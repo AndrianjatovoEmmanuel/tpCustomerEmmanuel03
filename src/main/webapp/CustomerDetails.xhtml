@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:metadata>
+        <f:viewParam name="idCustomer" value="#{customerDetailsMBean.idCustomer}"
+                     required="true"/>
+        <f:viewAction action="#{customerDetailsMBean.loadCustomer}"/>
+     </f:metadata>
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        Hello from Facelets
+        <f:view>
+            <h:form>
+                <h1><h:outputText value="Create/Edit"/></h1>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="CustomerId:" for="customerId"  />
+                    <h:inputText id="customerId" value="#{customerDetailsMBean.details.customerId}" readonly="true" title="CustomerId" required="true" requiredMessage="The CustomerId field is required."/>
+                    <h:outputLabel value="Name:" for="name" />
+                    <h:inputText id="name" value="#{customerDetailsMBean.details.name}" title="Name" />
+                    <h:outputLabel value="Addressline1:" for="addressline1" />
+                    <h:inputText id="addressline1" value="#{customerDetailsMBean.details.addressline1}" title="Addressline1" />
+                    <h:outputLabel value="Addressline2:" for="addressline2" />
+                    <h:inputText id="addressline2" value="#{customerDetailsMBean.details.addressline2}" title="Addressline2" />
+                    <h:outputLabel value="City:" for="city" />
+                    <h:inputText id="city" value="#{customerDetailsMBean.details.city}" title="City" />
+                    <h:outputLabel value="State:" for="state" />
+                    <h:inputText id="state" value="#{customerDetailsMBean.details.state}" title="State" />
+                    <h:outputLabel value="Phone:" for="phone" />
+                    <h:inputText id="phone" value="#{customerDetailsMBean.details.phone}" title="Phone" />
+                    <h:outputLabel value="Fax:" for="fax" />
+                    <h:inputText id="fax" value="#{customerDetailsMBean.details.fax}" title="Fax" />
+                    <h:outputLabel value="Email:" for="email" />
+                    <h:inputText id="email" value="#{customerDetailsMBean.details.email}" title="Email" />
+                    <h:outputLabel value="CreditLimit:" for="creditLimit" />
+                    <h:inputText id="creditLimit" value="#{customerDetailsMBean.details.creditLimit}" title="CreditLimit" />
+                    <h:outputLabel value="DiscountCode:" for="discountCode" />
+                    <h:selectOneMenu id="discountCode" value="#{customerDetailsMBean.details.discountCode}"  title="DiscountCode" required="true" requiredMessage="The DiscountCode field is required." converter="#{customerDetailsMBean.discountCodeConverter}">
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{customerDetailsMBean.discountCodes}" var="discountCode" 
+                                       itemLabel="#{discountCode.discountCode} - #{discountCode.rate} %"/>
+                        
+                    </h:selectOneMenu>
+                    <h:messages/>
+                    <h:button id="back" value="Revenir à la liste" outcome="CustomerList"/>
+                    <h:commandButton id="update" value="Enregistrer" action="#{customerDetailsMBean.update}"/>
+                   
+                </h:panelGrid>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>
+
